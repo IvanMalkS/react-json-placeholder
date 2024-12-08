@@ -24,7 +24,7 @@ export const jsonPlaceholderStore = create<JsonPlaceholderInterface>()((set, get
             const response: AxiosResponse<Array<Post>> = await api.get('/posts');
             set({ posts: response.data, loading: false, allPosts: response.data });
         } catch (error) {
-            set({ error: error as AxiosError, loading: false });
+            set({ error: error as AxiosError, loading: false, posts: [] });
         }
     },
     getPostsPages: (): number => {

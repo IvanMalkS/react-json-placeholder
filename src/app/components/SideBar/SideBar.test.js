@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import { SideBar } from './SideBar';
-import { renderWithRouter } from '../../composables/test-utils';
+import { renderWithRouter } from '../../__test__/TestUtils';
 
 jest.mock('next/router', () => ({
     useRouter: jest.fn(),

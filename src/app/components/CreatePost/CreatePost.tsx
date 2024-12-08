@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { CreatePostPopover } from '@/app/components/CreatePostPopover/CreatePostPopover';
+import { CreatePostPopover } from '../CreatePostPopover/CreatePostPopover';
 
 export const CreatePost = () => {
     const [isPopoverOpen, setPopoverOpen] = useState<boolean>(false);

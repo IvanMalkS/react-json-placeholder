@@ -39,6 +39,7 @@ export const CreatePostForm = ({ setPopoverOpen }: CreatePostFormProps) => {
         <>
             <h2 className="w-full text-center mb-4">Posts addition form</h2>
             <form
+                data-testid="create-new-post-form"
                 className="border-t-2 border-b-2 pt-1 pb-1 border-amber-200 flex flex-col gap-4 items-center"
                 onSubmit={handleSubmit(onFormSubmit)}
                 id="post-form"

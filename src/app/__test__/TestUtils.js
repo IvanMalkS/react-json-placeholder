@@ -1,8 +1,13 @@
 import { useRouter } from 'next/router';
 import { render } from '@testing-library/react';
+import { jsonPlaceholderStore } from '../stores/jsonPlaceholderStore/jsonPlaceholderStore.ts';
 
 jest.mock('next/router', () => ({
     useRouter: jest.fn(),
+}));
+
+jest.mock('../stores/jsonPlaceholderStore/jsonPlaceholderStore.ts', () => ({
+    jsonPlaceholderStore: jest.fn(),
 }));
 
 let modalRoot;
@@ -45,5 +50,24 @@ const renderWithModal = (ui, options) => {
     return result;
 };
 
+export const mockJsonPlaceholderStore = (stateOverrides = {}) => {
+    const defaultState = {
+        loading: false,
+        error: null,
+        loadPosts: jest.fn(),
+        getPostsByPage: jest.fn(() => []),
+    };
+
+    const mockState = { ...defaultState, ...stateOverrides };
+
+    jsonPlaceholderStore.mockReturnValue(mockState);
+};
+
 export * from '@testing-library/react';
-export { renderWithRouter, setupModalContainer, cleanupModalContainer, renderWithModal };
+export {
+    renderWithRouter,
+    setupModalContainer,
+    cleanupModalContainer,
+    renderWithModal,
+    renderWithStore,
+};

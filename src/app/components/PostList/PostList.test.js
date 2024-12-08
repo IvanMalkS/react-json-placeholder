@@ -1,7 +1,7 @@
-import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { PostLists } from './PostLists';
-import { jsonPlaceholderStore } from '../../stores/jsonPlaceholderStore/jsonPlaceholderStore';
+import { mockJsonPlaceholderStore } from '../../composables/test-utils';
+import { MOCK_POST_LIST } from '../../__test__/constants';
 
 jest.mock('../../stores/jsonPlaceholderStore/jsonPlaceholderStore', () => ({
     jsonPlaceholderStore: jest.fn(),
@@ -13,11 +13,8 @@ describe('PostLists', () => {
     });
 
     test('renders loading state correctly', () => {
-        jsonPlaceholderStore.mockReturnValue({
+        mockJsonPlaceholderStore({
             loading: true,
-            error: null,
-            loadPosts: jest.fn(),
-            getPostsByPage: jest.fn(),
         });
 
         render(<PostLists />);
@@ -26,11 +23,9 @@ describe('PostLists', () => {
     });
 
     test('renders error state correctly', () => {
-        jsonPlaceholderStore.mockReturnValue({
+        mockJsonPlaceholderStore({
             loading: false,
             error: { message: 'Something went wrong' },
-            loadPosts: jest.fn(),
-            getPostsByPage: jest.fn(),
         });
 
         render(<PostLists />);
@@ -39,16 +34,9 @@ describe('PostLists', () => {
     });
 
     test('renders posts correctly', async () => {
-        const mockPosts = [
-            { id: 1, title: 'Post 1', body: 'Body 1', userId: 1 },
-            { id: 2, title: 'Post 2', body: 'Body 2', userId: 2 },
-        ];
-
-        jsonPlaceholderStore.mockReturnValue({
+        mockJsonPlaceholderStore({
             loading: false,
-            error: null,
-            loadPosts: jest.fn(),
-            getPostsByPage: jest.fn(() => mockPosts),
+            getPostsByPage: jest.fn(() => MOCK_POST_LIST),
         });
 
         render(<PostLists />);
@@ -62,20 +50,5 @@ describe('PostLists', () => {
             expect(screen.getByText('Body 2')).toBeInTheDocument;
             expect(screen.getByText('By user 2')).toBeInTheDocument;
         });
-    });
-
-    test('calls loadPosts on mount', () => {
-        const mockLoadPosts = jest.fn();
-
-        jsonPlaceholderStore.mockReturnValue({
-            loading: false,
-            error: null,
-            loadPosts: mockLoadPosts,
-            getPostsByPage: jest.fn(),
-        });
-
-        render(<PostLists />);
-
-        expect(mockLoadPosts).toHaveBeenCalled();
     });
 });

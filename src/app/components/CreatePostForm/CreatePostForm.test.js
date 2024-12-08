@@ -65,7 +65,9 @@ describe('CreatePostForm', () => {
             { target: { value: 'Test Message' } }
         );
 
-        fireEvent.click(screen.getByText('Create new post'));
+        const form = screen.getByTestId('create-new-post-form');
+
+        fireEvent.submit(form);
 
         await waitFor(() => {
             expect(mockCreatePost).toHaveBeenCalledWith({

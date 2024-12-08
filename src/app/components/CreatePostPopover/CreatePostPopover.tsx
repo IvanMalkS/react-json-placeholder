@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
 import { useEffect, useRef } from 'react';
-import { CreatePostForm } from '@/app/components/CreatePostForm/CreatePostForm';
+import { CreatePostForm } from '../CreatePostForm/CreatePostForm';
 
 interface CreatePostPopoverProps {
     isPopoverOpen: boolean;

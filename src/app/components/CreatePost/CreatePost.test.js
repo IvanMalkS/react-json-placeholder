@@ -6,7 +6,7 @@ import {
     renderWithModal,
     setupModalContainer,
     cleanupModalContainer,
-} from '../../composables/test-utils';
+} from '../../__test__/TestUtils';
 
 describe('CreatePost', () => {
     beforeEach(() => {

@@ -1,6 +1,6 @@
-import { PostLists } from '@/app/components/PostList/PostLists';
-import { PostPagination } from '@/app/components/PostPagination';
-import { PostFilters } from '@/app/components/PostFilters';
+import { PostLists } from './components/PostList/PostLists';
+import { PostPagination } from './components/PostPagination/PostPagination';
+import { PostFilters } from './components/PostFilters/PostFilters';
 
 export default function Home() {
     return (
