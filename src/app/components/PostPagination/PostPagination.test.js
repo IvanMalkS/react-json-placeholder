@@ -2,7 +2,6 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { PostPagination } from './PostPagination';
 import { mockJsonPlaceholderStore } from '../../__test__/TestUtils';
 
-// Мокаем jsonPlaceholderStore
 jest.mock('../../stores/jsonPlaceholderStore/jsonPlaceholderStore', () => ({
     jsonPlaceholderStore: jest.fn(),
 }));
